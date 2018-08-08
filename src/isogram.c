@@ -14,28 +14,23 @@ bool is_isogram(const char phrase[])
     return true;
   }
 
-  char *sortable_phrase = malloc(strlen(phrase) + 1);
-
-  int sortable_phrase_index = 0;
+  // ASCII char codes, which C uses to represent chars, run from 0 - 127.
+  // This means that we would need an array of 128 chars length to cover all
+  // possible codes.
+  char charset[128];
 
   for (int i = 0; phrase[i]; i++)
   {
-    sortable_phrase[sortable_phrase_index] = phrase[i];
-    ++sortable_phrase_index;
-  }
+    char code = phrase[i];
+    int dec = (int)code;
 
-  qsort(sortable_phrase, strlen(sortable_phrase), 1, compare);
-
-  for (int j = 1; sortable_phrase[j]; j++)
-  {
-    if (sortable_phrase[j] == sortable_phrase[j - 1])
+    if (charset[dec] == code)
     {
-      free(sortable_phrase);
       return false;
     }
-  }
 
-  free(sortable_phrase);
+    charset[dec] = code;
+  }
 
   return true;
 }
