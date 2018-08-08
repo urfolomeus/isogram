@@ -29,7 +29,11 @@ bool is_isogram(const char phrase[])
       return false;
     }
 
-    charset[dec] = code;
+    // ignore spaces and hyphens as you can have multiple of them
+    if (code != ' ' && code != '-')
+    {
+      charset[dec] = code;
+    }
   }
 
   return true;
