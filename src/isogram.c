@@ -14,7 +14,7 @@ bool is_isogram(const char phrase[])
   // If we have an array large enough to hold all possible chars
   // from the ANSII chart then we can use that to check whether or
   // not we've seen a char before.
-  char charset[CHAR_MAX];
+  char charset[CHAR_MAX] = {0};
 
   for (int i = 0; phrase[i]; i++)
   {
