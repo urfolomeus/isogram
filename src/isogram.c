@@ -1,6 +1,7 @@
 #include "isogram.h"
 #include <string.h>
 #include <stdlib.h>
+#include <limits.h>
 
 int compare(const void *a, const void *b)
 {
@@ -14,10 +15,10 @@ bool is_isogram(const char phrase[])
     return true;
   }
 
-  // ASCII char codes, which C uses to represent chars, run from 0 - 127.
-  // This means that we would need an array of 128 chars length to cover all
-  // possible codes.
-  char charset[128];
+  // If we have an array large enough to hold all possible chars
+  // from the ANSII chart then we can use that to check whether or
+  // not we've seen a char before.
+  char charset[CHAR_MAX];
 
   for (int i = 0; phrase[i]; i++)
   {
