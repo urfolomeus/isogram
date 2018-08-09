@@ -23,18 +23,19 @@ bool is_isogram(const char phrase[])
 
   for (int i = 0; phrase[i]; i++)
   {
-    char code = phrase[i];
-    int dec = (int)code;
+    int code = phrase[i];
 
-    if (charset[dec] == code)
+    if (charset[code] == code)
     {
       return false;
     }
 
-    // ignore spaces and hyphens as you can have multiple of them
+    // Log any seen alpha chars as that way the next time we test
+    // we can prove that this is not an isogram. Ignore spaces and
+    // hyphens though as you can have multiple of them.
     if (isalpha(code))
     {
-      charset[dec] = code;
+      charset[code] = code;
     }
   }
 
