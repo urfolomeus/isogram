@@ -25,12 +25,18 @@ bool is_isogram(const char phrase[])
       return false;
     }
 
-    // Log any seen alpha chars as that way the next time we test
-    // we can prove that this is not an isogram. Ignore spaces and
-    // hyphens though as you can have multiple of them.
+    // Log any seen alpha chars so that the next time we see them
+    // we can prove that this is not an isogram. Store both lower
+    // and upper case versions so that we can recognise the same
+    // char in either case. Ignore spaces and hyphens though as
+    // you can have multiple of them.
     if (isalpha(code))
     {
-      charset[code] = code;
+      int lower = tolower(code);
+      int upper = toupper(code);
+
+      charset[lower] = lower;
+      charset[upper] = upper;
     }
   }
 
