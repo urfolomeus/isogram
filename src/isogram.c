@@ -4,11 +4,6 @@
 #include <limits.h>
 #include <ctype.h>
 
-int compare(const void *a, const void *b)
-{
-  return *(const char *)a - *(const char *)b;
-}
-
 bool is_isogram(const char phrase[])
 {
   if (isblank(phrase[0]))
