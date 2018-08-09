@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <ctype.h>
 
 int compare(const void *a, const void *b)
 {
@@ -10,7 +11,7 @@ int compare(const void *a, const void *b)
 
 bool is_isogram(const char phrase[])
 {
-  if (phrase[0] == '\0')
+  if (isblank(phrase[0]))
   {
     return true;
   }
@@ -31,7 +32,7 @@ bool is_isogram(const char phrase[])
     }
 
     // ignore spaces and hyphens as you can have multiple of them
-    if (code != ' ' && code != '-')
+    if (isalpha(code))
     {
       charset[dec] = code;
     }
