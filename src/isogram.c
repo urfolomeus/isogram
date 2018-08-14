@@ -1,7 +1,6 @@
 #include "isogram.h"
 #include <string.h>
 #include <stdlib.h>
-#include <limits.h>
 #include <ctype.h>
 
 #define LOWER_CASE_LETTERS 26
