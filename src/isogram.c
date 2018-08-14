@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define LOWER_CASE_LETTERS 26
+#define ALPHABET 26
 #define OFFSET 'a'
 
 bool is_isogram(const char phrase[])
@@ -11,10 +11,15 @@ bool is_isogram(const char phrase[])
   // If we have an array large enough to hold the lower case chars
   // from the ANSII chart then we can use that to check whether or
   // not we've seen a char before.
-  char charset[LOWER_CASE_LETTERS] = {0};
+  int charset[ALPHABET] = {0};
 
   for (int i = 0; phrase[i]; i++)
   {
+    if (!isalpha(phrase[i]))
+    {
+      continue;
+    }
+
     int code = tolower(phrase[i]);
     int index = code - OFFSET;
 
@@ -23,12 +28,7 @@ bool is_isogram(const char phrase[])
       return false;
     }
 
-    // Count any seen alpha chars so that the next time we see them
-    // we can prove that this is not an isogram.
-    if (isalpha(code))
-    {
-      charset[index]++;
-    }
+    charset[index]++;
   }
 
   return true;
