@@ -4,18 +4,22 @@
 #include <limits.h>
 #include <ctype.h>
 
+#define LOWER_CASE_LETTERS 26
+#define OFFSET 'a'
+
 bool is_isogram(const char phrase[])
 {
-  // If we have an array large enough to hold all possible chars
+  // If we have an array large enough to hold the lower case chars
   // from the ANSII chart then we can use that to check whether or
   // not we've seen a char before.
-  char charset[CHAR_MAX] = {0};
+  char charset[LOWER_CASE_LETTERS] = {0};
 
   for (int i = 0; phrase[i]; i++)
   {
     int code = tolower(phrase[i]);
+    int index = code - OFFSET;
 
-    if (charset[code] == code)
+    if (charset[index] == code)
     {
       return false;
     }
@@ -27,7 +31,7 @@ bool is_isogram(const char phrase[])
     // you can have multiple of them.
     if (isalpha(code))
     {
-      charset[code] = code;
+      charset[index] = code;
     }
   }
 
