@@ -19,17 +19,16 @@ bool is_isogram(const char phrase[])
     int code = tolower(phrase[i]);
     int index = code - OFFSET;
 
-    if (charset[index] == code)
+    if (charset[index] > 0)
     {
       return false;
     }
 
-    // Log any seen alpha chars so that the next time we see them
-    // we can prove that this is not an isogram. Ignore spaces and
-    // hyphens though as you can have multiple of them.
+    // Count any seen alpha chars so that the next time we see them
+    // we can prove that this is not an isogram.
     if (isalpha(code))
     {
-      charset[index] = code;
+      charset[index]++;
     }
   }
 
