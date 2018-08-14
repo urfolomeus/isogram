@@ -13,7 +13,7 @@ bool is_isogram(const char phrase[])
 
   for (int i = 0; phrase[i]; i++)
   {
-    int code = phrase[i];
+    int code = tolower(phrase[i]);
 
     if (charset[code] == code)
     {
@@ -27,11 +27,7 @@ bool is_isogram(const char phrase[])
     // you can have multiple of them.
     if (isalpha(code))
     {
-      int lower = tolower(code);
-      int upper = toupper(code);
-
-      charset[lower] = lower;
-      charset[upper] = upper;
+      charset[code] = code;
     }
   }
 
