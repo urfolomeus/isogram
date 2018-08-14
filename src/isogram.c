@@ -6,11 +6,6 @@
 
 bool is_isogram(const char phrase[])
 {
-  if (isblank(phrase[0]))
-  {
-    return true;
-  }
-
   // If we have an array large enough to hold all possible chars
   // from the ANSII chart then we can use that to check whether or
   // not we've seen a char before.
